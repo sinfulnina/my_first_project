@@ -4,8 +4,8 @@ import openai
 import nltk
 import os
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-st.secrets["OPEN_API_KEY"]
+st.write (
+    openai.api_key = os.getenv("OPENAI_API_KEY") == st.secrets["OPEN_API_KEY"])
 
 with st.sidebar:
 
