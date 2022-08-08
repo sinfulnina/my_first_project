@@ -53,23 +53,6 @@ st.write(st.session_state['output_text'])
 if st.button('Copy to Clipboard'):
     pyperclip.copy(st.session_state['output_text'])
 
-
-#components.html("""
-
-#<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-#<link rel="icon" href="sinful_logo_black.png" type="image/x-icon">
-# 
-#     <div class="card" style="width: 18rem; margin-top: 20px;">
-#      <div class="card-body">
-#        <h5 class="card-title">Card title</h5>
-#        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-#        <a href="#" class="btn" style="background-color: #344AAA; color: white;">Go somewhere</a>
-#      </div>
-#    </div>
-#  
-#    """,    height=250)
-
 st.markdown(
     """
     <style>
