@@ -6,6 +6,7 @@ import os
 import streamlit.components.v1 as components
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
+st.secrets["OPEN_API_KEI"]
 
 with st.sidebar:
 
