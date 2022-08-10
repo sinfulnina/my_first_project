@@ -35,7 +35,7 @@ with st.sidebar:
 
     st.metric(label="Max Output Token Length", value=2018-len(nltk.word_tokenize(st.session_state.input_text)))
 
-st.header("SEO Text Generator")
+st.header("SEO AI Text Generator")
 prompt = st.text_area("What do you want to write about?", key='input_text')
 
 if st.button('Submit'):
