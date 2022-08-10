@@ -52,19 +52,3 @@ st.write(st.session_state['output_text'])
 
 if st.button('Copy to Clipboard'):
     pyperclip.copy(st.session_state['output_text'])
-
-st.markdown(
-    """
-    <style>
-        h5  {
-        color: #344AAA;
-        }
-
-        .stButton > button {
-            background-color: #344AAA;
-            color: white;
-            float: none;
-         }
-        
-    """
-    , unsafe_allow_html=True)
