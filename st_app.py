@@ -63,7 +63,7 @@ st.markdown(
             background-color: #344AAA;
             color: white;
             float: none;
-            
+         }
         
     """
     , unsafe_allow_html=True)
