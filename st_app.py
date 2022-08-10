@@ -3,6 +3,7 @@ import pyperclip
 import openai
 import nltk
 import os
+nltk.download('punkt')
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
