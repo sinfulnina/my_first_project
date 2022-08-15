@@ -45,7 +45,8 @@ if st.button('Submit'):
                                             temperature=temperature,
                                             frequency_penalty=frequency_penalty,
                                             prompt=prompt,
-                                            max_tokens=max_tokens
+                                            max_tokens=max_tokens,
+                                            stop=["#", ":"]
                                             )
         st.session_state['output_text'] = response['choices'][0]['text']
 st.write(st.session_state['output_text'])
