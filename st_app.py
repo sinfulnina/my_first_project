@@ -13,7 +13,7 @@ with st.sidebar:
 
     temperature = st.slider(
         label='Temperature',
-        min_value=0.0, max_value=1.0, value=0.6, step=0.1, help="Controls Randomness: Lowering results in less random completions. As the temperature approaches zero, the model will become detministic and repetitive")
+        min_value=0.0, max_value=1.0, value=0.6, step=0.1, help="Controls Randomness: Lowering results in less random completions. As the temperature approaches zero, the model will become detministic and repetitive \n Controls how much randomness is in the output.")
 
     frequency_penalty = st.slider(
         label='Frequency Penalty',
