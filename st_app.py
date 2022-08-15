@@ -29,7 +29,7 @@ with st.sidebar:
     if 'output_text' not in st.session_state:
         st.session_state['output_text'] = ''
 
-    st.metric(label="Prompt Token Length", value=len(nltk.word_tokenize(st.session_state.input_text)), help="The number of tokens used in the prompt.")
+    st.metric(label="Prompt Token Length", value=len(nltk.word_tokenize(st.session_state.input_text)))
 
     st.metric(label="Output Token Length", value=len(nltk.word_tokenize(st.session_state.output_text)))
 
