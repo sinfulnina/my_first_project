@@ -1,10 +1,10 @@
 import streamlit as st
-import pyperclip
 import openai
 import nltk
 import os
 nltk.download('punkt')
 
+openai.api_key = os.getenv("OPENAI_API_KEY")
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 with st.sidebar:
@@ -20,14 +20,20 @@ with st.sidebar:
         min_value=-2.0, max_value=2.0, value=0.0, step=0.1, help="How much to penalize new tokens based on their existing frequency in the test so far. Decreases the model's likelihood to repeat the same line verbatim.")
 
     max_tokens = st.slider(
-        label='Maximum Tokens',
+        label='Maximum Token',
         min_value=0, max_value=2000, value=50, step=50, help="The maximum number of tokens to generate. This does not tell the AI how long a text it should write, but how many tokens are generated, thus credited for.")
 
     if 'input_text' not in st.session_state:
         st.session_state['input_text'] = ''
 
+    if 'input_text2' not in st.session_state:
+        st.session_state['input_text2'] = ''
+
     if 'output_text' not in st.session_state:
         st.session_state['output_text'] = ''
+
+    if 'output_text2' not in st.session_state:
+        st.session_state['output_text2'] = ''
 
     st.metric(label="Prompt Token Length", value=len(nltk.word_tokenize(st.session_state.input_text)))
 
@@ -35,21 +41,45 @@ with st.sidebar:
 
     st.metric(label="Max Output Token Length", value=2018-len(nltk.word_tokenize(st.session_state.input_text)))
 
-st.header("SEO AI Text Generator")
-prompt = st.text_area("What do you want to write about?", key='input_text')
+tabs_titles = ["Sinful Generator","OpenAI Generator","Examples"]
 
-if st.button('Submit'):
-    if prompt:
-        response = openai.Completion.create(model="davinci:ft-sinful-2022-08-05-08-56-21",
-                                            #engine="text-davinci-001",
-                                            temperature=temperature,
-                                            frequency_penalty=frequency_penalty,
-                                            prompt=prompt,
-                                            max_tokens=max_tokens,
-                                            #stop=["#", ":"]
-                                            )
-        st.session_state['output_text'] = response['choices'][0]['text']
-st.write(st.session_state['output_text'])
+tabs = st.tabs(tabs_titles)
 
-if st.button('Copy to Clipboard'):
-    pyperclip.copy(st.session_state['output_text'])
+with tabs[0]:
+
+    st.header("SEO AI Text Generator")
+    prompt = st.text_area("What do you want to write about?", key='input_text')
+
+    if st.button('Submit', key='submit'):
+        if prompt:
+            response = openai.Completion.create(model="davinci:ft-sinful-2022-08-05-08-56-21",
+                                                #engine="text-davinci-001",
+                                                temperature=temperature,
+                                                frequency_penalty=frequency_penalty,
+                                                prompt=prompt,
+                                                max_tokens=max_tokens,
+                                                #stop=["#", ":"]
+                                                )
+            st.session_state['output_text'] = response['choices'][0]['text']
+    st.write(st.session_state['output_text'])
+
+with tabs[1]:
+    st.header("OpenAI Text Generator")
+    prompt = st.text_area("What do you want to write about?", key='input_text2')
+
+    if st.button('Submit', key='submit2'):
+        if prompt:
+            response = openai.Completion.create(#model="davinci:ft-sinful-2022-08-05-08-56-21",
+                                                engine="text-davinci-001",
+                                                temperature=temperature,
+                                                frequency_penalty=frequency_penalty,
+                                                prompt=prompt,
+                                                max_tokens=max_tokens,
+                                                # stop=["#", ":"]
+                                                )
+            st.session_state['output_text2'] = response['choices'][0]['text']
+    st.write(st.session_state['output_text2'])
+
+with tabs[2]:
+
+    st.header("Examples")
