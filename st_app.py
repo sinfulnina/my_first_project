@@ -20,7 +20,7 @@ with st.sidebar:
         min_value=-2.0, max_value=2.0, value=0.0, step=0.1, help="How much to penalize new tokens based on their existing frequency in the test so far. Decreases the model's likelihood to repeat the same line verbatim.")
 
     max_tokens = st.slider(
-        label='Maximum Length',
+        label='Maximum Tokens',
         min_value=0, max_value=2000, value=50, step=50, help="The maximum number of tokens to generate. This does not tell the AI how long a text it should write, but how many tokens are generated, thus credited for.")
 
     if 'input_text' not in st.session_state:
@@ -29,11 +29,11 @@ with st.sidebar:
     if 'output_text' not in st.session_state:
         st.session_state['output_text'] = ''
 
-    st.metric(label="Prompt Token Length", value=len(nltk.word_tokenize(st.session_state.input_text)))
+    st.metric(label="Prompt Token Length", value=len(nltk.word_tokenize(st.session_state.input_text)), help="The number of tokens used in the prompt.")
 
-    st.metric(label="Output Token Length", value=len(nltk.word_tokenize(st.session_state.output_text)))
+    st.metric(label="Output Token Length", value=len(nltk.word_tokenize(st.session_state.output_text)), help="The number of tokens used in the completion output.")
 
-    st.metric(label="Max Output Token Length", value=2018-len(nltk.word_tokenize(st.session_state.input_text)))
+    st.metric(label="Max Output Token Length", value=2018-len(nltk.word_tokenize(st.session_state.input_text)), help="The maximum possible token length of the output completion (2018 - prompt length = maximum output length).")
 
 st.header("SEO AI Text Generator")
 prompt = st.text_area("What do you want to write about?", key='input_text')
