@@ -31,9 +31,9 @@ with st.sidebar:
 
     st.metric(label="Prompt Token Length", value=len(nltk.word_tokenize(st.session_state.input_text)), help="The number of tokens used in the prompt.")
 
-    st.metric(label="Output Token Length", value=len(nltk.word_tokenize(st.session_state.output_text)), help="The number of tokens used in the completion output.")
+    st.metric(label="Output Token Length", value=len(nltk.word_tokenize(st.session_state.output_text)))
 
-    st.metric(label="Max Output Token Length", value=2018-len(nltk.word_tokenize(st.session_state.input_text)), help="The maximum possible token length of the output completion (2018 - prompt length = maximum output length).")
+    st.metric(label="Max Output Token Length", value=2018-len(nltk.word_tokenize(st.session_state.input_text)))
 
 st.header("SEO AI Text Generator")
 prompt = st.text_area("What do you want to write about?", key='input_text')
