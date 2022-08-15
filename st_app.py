@@ -17,7 +17,7 @@ with st.sidebar:
 
     frequency_penalty = st.slider(
         label='Frequency Penalty',
-        min_value=-2.0, max_value=2.0, value=0.0, step=0.1 help="How much to penalize new tokens based on their existing frequency in the test so far. Decreases the model's likelihood to repeat the same line verbatim.")
+        min_value=-2.0, max_value=2.0, value=0.0, step=0.1, help="How much to penalize new tokens based on their existing frequency in the test so far. Decreases the model's likelihood to repeat the same line verbatim.")
 
     max_tokens = st.slider(
         label='Maximum Length',
