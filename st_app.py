@@ -13,15 +13,15 @@ with st.sidebar:
 
     temperature = st.slider(
         label='Temperature',
-        min_value=0.0, max_value=1.0, value=0.6, step=0.1, help="Controls Randomness: Lowering results in less random completions. As the temperature approaches zero, the model will become detministic and repetitive \n Controls how much randomness is in the output.")
+        min_value=0.0, max_value=1.0, value=0.6, step=0.1, help="Controls Randomness: Lowering results in less random completions. As the temperature approaches zero, the model will become detministic and repetitive.")
 
     frequency_penalty = st.slider(
         label='Frequency Penalty',
-        min_value=-2.0, max_value=2.0, value=0.0, step=0.1)
+        min_value=-2.0, max_value=2.0, value=0.0, step=0.1 help="How much to penalize new tokens based on their existing frequency in the test so far. Decreases the model's likelihood to repeat the same line verbatim.")
 
     max_tokens = st.slider(
-        label='Maximum Token',
-        min_value=0, max_value=2000, value=50, step=50)
+        label='Maximum Length',
+        min_value=0, max_value=2000, value=50, step=50, help="The maximum number of tokens to generate. This does not tell the AI how long a text it should write, but how many tokens are generated, thus credited for.")
 
     if 'input_text' not in st.session_state:
         st.session_state['input_text'] = ''
