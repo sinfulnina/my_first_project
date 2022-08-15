@@ -21,7 +21,7 @@ with st.sidebar:
 
     max_tokens = st.slider(
         label='Maximum Token',
-        min_value=0, max_value=200, value=10, step=10)
+        min_value=0, max_value=2000, value=50, step=50)
 
     if 'input_text' not in st.session_state:
         st.session_state['input_text'] = ''
