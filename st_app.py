@@ -124,8 +124,6 @@ with tabs[2]:
         "\n\nDESIRED LENGTH: " + str(desired_length) + " words" +
         "\n\nPRODUCT DESCRIPTION:")
 
-    st.write(prompt)
-
     if st.button('Submit', key='submit3'):
         if prompt:
             response = openai.Completion.create(model="davinci:ft-sinful-2022-08-05-08-56-21",
