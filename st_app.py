@@ -8,8 +8,8 @@ nltk.download('punkt')
 
 # EMOJI LINK https://carpedm20.github.io/emoji/
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-#openai.api_key = st.secrets["OPENAI_API_KEY"]
+#openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 with st.sidebar:
     st.image(image='https://www.sinful.dk/skin/frontend/sinful/sinful2020/images/logo_black.svg', width=100)
@@ -98,8 +98,18 @@ with st.sidebar:
     if 'output_text7' not in st.session_state:
         st.session_state['output_text7'] = ''
 
+    # SESSION STATES TAB 5 - Proofreading
+    if 'input_text3' not in st.session_state:
+        st.session_state['input_text3'] = ''
+
+    if 'input_text4' not in st.session_state:
+        st.session_state['input_text4'] = ''
+
+    if 'output_text8' not in st.session_state:
+        st.session_state['output_text8'] = ''
+
 # TAB BAR
-tabs_titles = ["Sinful Generator", "OpenAI Generator", "Product Description Generator", "SEO Text Generator", "SEO Text Generator 2"]
+tabs_titles = ["Sinful", "OpenAI", "Product Description", "SEO Text", "SEO Text 2", "Proofreading"]
 
 tabs = st.tabs(tabs_titles)
 
@@ -121,6 +131,7 @@ with tabs[0]:
                                                 # engine="text-davinci-002",
                                                 temperature=temperature,
                                                 frequency_penalty=frequency_penalty,
+                                                presence_penalty=presence_penalty,
                                                 prompt=prompt,
                                                 max_tokens=max_tokens,
                                                 # stop=["#"]
@@ -144,7 +155,7 @@ with tabs[0]:
 with tabs[1]:
     st.header("OpenAI Text Generator")
     prompt = st.text_area("What do you want to write about? " + emoji.emojize(":writing_hand:"), key='input_text2',
-                          help="This text generator is using the non-finetuned version of the Davinci engine", placeholder="Get some content inspiration through providing any prompt you can think of.")
+                          help="This text generator is using the non-finetuned version of the Davinci engine", placeholder="E.g Write an outline for a blog post about BDSM")
 
     if st.button('Submit', key='submit2'):
         if prompt:
@@ -152,6 +163,7 @@ with tabs[1]:
                 engine="text-davinci-002",
                 temperature=temperature,
                 frequency_penalty=frequency_penalty,
+                presence_penalty=presence_penalty,
                 prompt=prompt,
                 max_tokens=max_tokens,
                 #stop=["#"]
@@ -199,6 +211,7 @@ with tabs[2]:
                                                 # engine="text-davinci-002",
                                                 temperature=temperature,
                                                 frequency_penalty=frequency_penalty,
+                                                presence_penalty=presence_penalty,
                                                 prompt=prompt,
                                                 max_tokens=max_tokens
                                                 )
@@ -248,6 +261,7 @@ with tabs[3]:
                 engine="text-davinci-002",
                 temperature=temperature,
                 frequency_penalty=frequency_penalty,
+                presence_penalty=presence_penalty,
                 prompt=prompt,
                 max_tokens=max_tokens,
                 stop=["END"]
@@ -293,6 +307,7 @@ with tabs[4]:
                 engine="text-davinci-002",
                 temperature=temperature,
                 frequency_penalty=frequency_penalty,
+                presence_penalty=presence_penalty,
                 prompt=prompt,
                 max_tokens=max_tokens,
                 stop=["END"]
@@ -308,6 +323,7 @@ with tabs[4]:
                 engine="text-davinci-002",
                 temperature=temperature,
                 frequency_penalty=frequency_penalty,
+                presence_penalty=presence_penalty,
                 prompt=prompt2,
                 max_tokens=max_tokens,
                 stop=["END"]
@@ -323,6 +339,7 @@ with tabs[4]:
                 engine="text-davinci-002",
                 temperature=temperature,
                 frequency_penalty=frequency_penalty,
+                presence_penalty=presence_penalty,
                 prompt=prompt3,
                 max_tokens=max_tokens,
                 stop=["END"]
@@ -347,5 +364,34 @@ with tabs[4]:
     col1.metric(label="Prompt Token Length", value=(11*len(nltk.word_tokenize(st.session_state.input_text_product_page2))) + len(nltk.word_tokenize(prompt)) + len(nltk.word_tokenize(prompt2)) + len(nltk.word_tokenize(prompt3)))
     col2.metric(label="Output Token Length", value=len(nltk.word_tokenize(st.session_state.output_text5)) + len(nltk.word_tokenize(st.session_state.output_text6)) + len(nltk.word_tokenize(st.session_state.output_text7)))
 
+with tabs[5]:
+    st.header("Proofreading")
+    proofreading_input = st.text_area("What do you want to have corrected? " + emoji.emojize(":eyes:"), key='input_text3',
+                          help="This text generator is using the non-finetuned version of the Davinci engine",
+                          placeholder="Insert the text that you want to have corrected")
+    instruction = st.text_area("How do you want to correct the text?" + emoji.emojize(":crystal_ball:"), key='input_text4',
+                          placeholder="E.g Correct the spelling and grammar", height=10)
+
+    if st.button('Correct', key='submit8'):
+        if proofreading_input:
+            response = openai.Edit.create(
+                model="text-davinci-edit-001",
+                temperature=temperature,
+                input=proofreading_input,
+                instruction=instruction
+            )
+            st.session_state['output_text8'] = response['choices'][0]['text']
+    st.text_area(label="Corrected output", value=st.session_state['output_text8'], height=300, key="output8")
+
+    # st.download_button(
+    #    'Download Prompt and Output',
+    #    ("PROMPT:\n\n" + prompt + "\n\nOUTPUT:" + st.session_state['output_text2']),
+    #    "openai_text_generator.txt",
+    #    key="openai_text_download"
+    # )
+
+    col1, col2 = st.columns(2)
+    col1.metric(label="Prompt Token Length", value=len(nltk.word_tokenize(st.session_state.input_text3)) + len(nltk.word_tokenize(st.session_state.input_text4)))
+    col2.metric(label="Output Token Length", value=len(nltk.word_tokenize(st.session_state.output_text8)))
 
 # st.header("Examples")
