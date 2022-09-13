@@ -8,8 +8,8 @@ nltk.download('punkt')
 
 # EMOJI LINK https://carpedm20.github.io/emoji/
 
-#openai.api_key = os.getenv("OPENAI_API_KEY")
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+openai.api_key = os.getenv("OPENAI_API_KEY")
+#openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 with st.sidebar:
     st.image(image='https://www.sinful.dk/skin/frontend/sinful/sinful2020/images/logo_black.svg', width=100)
