@@ -128,7 +128,7 @@ with tabs[0]:
     if st.button('Submit', key='submit'):
         if prompt:
             response = openai.Completion.create(model="davinci:ft-sinful-2022-08-05-08-56-21",
-                                                # engine="text-davinci-002",
+                                                # engine="text-davinci-003",
                                                 temperature=temperature,
                                                 frequency_penalty=frequency_penalty,
                                                 presence_penalty=presence_penalty,
@@ -160,7 +160,7 @@ with tabs[1]:
     if st.button('Submit', key='submit2'):
         if prompt:
             response = openai.Completion.create(# model="davinci:ft-sinful-2022-08-05-08-56-21",
-                engine="text-davinci-002",
+                engine="text-davinci-003",
                 temperature=temperature,
                 frequency_penalty=frequency_penalty,
                 presence_penalty=presence_penalty,
@@ -208,7 +208,7 @@ with tabs[2]:
     if st.button('Submit', key='submit3'):
         if prompt:
             response = openai.Completion.create(model="davinci:ft-sinful-2022-08-05-08-56-21",
-                                                # engine="text-davinci-002",
+                                                # engine="text-davinci-003",
                                                 temperature=temperature,
                                                 frequency_penalty=frequency_penalty,
                                                 presence_penalty=presence_penalty,
@@ -258,7 +258,7 @@ with tabs[3]:
     if st.button('Submit', key='submit4'):
         if prompt:
             response = openai.Completion.create(  # model="davinci:ft-sinful-2022-08-05-08-56-21",
-                engine="text-davinci-002",
+                engine="text-davinci-003",
                 temperature=temperature,
                 frequency_penalty=frequency_penalty,
                 presence_penalty=presence_penalty,
@@ -304,7 +304,7 @@ with tabs[4]:
         if prompt:
             response = openai.Completion.create(
                 #model="davinci:ft-sinful-2022-08-05-08-56-21",
-                engine="text-davinci-002",
+                engine="text-davinci-003",
                 temperature=temperature,
                 frequency_penalty=frequency_penalty,
                 presence_penalty=presence_penalty,
@@ -320,7 +320,7 @@ with tabs[4]:
         if prompt2:
             response = openai.Completion.create(
                 #model="davinci:ft-sinful-2022-08-05-08-56-21",
-                engine="text-davinci-002",
+                engine="text-davinci-003",
                 temperature=temperature,
                 frequency_penalty=frequency_penalty,
                 presence_penalty=presence_penalty,
@@ -336,7 +336,7 @@ with tabs[4]:
         if prompt3:
             response = openai.Completion.create(
                 #model="davinci:ft-sinful-2022-08-05-08-56-21",
-                engine="text-davinci-002",
+                engine="text-davinci-003",
                 temperature=temperature,
                 frequency_penalty=frequency_penalty,
                 presence_penalty=presence_penalty,
